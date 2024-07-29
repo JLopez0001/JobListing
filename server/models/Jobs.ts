@@ -32,7 +32,8 @@ const JobSchema: Schema<IJob> = new Schema(
         salaryRange: { type: String },
         applicationDeadline: { type: Date },
         contactInformation: { type: String }
-    }
+    },
+    { timestamps: true }
 )
 
 const Job = Model<IJob> = mongoose.model<IJob>('Job', JobSchema)
