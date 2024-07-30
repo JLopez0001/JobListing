@@ -20,4 +20,18 @@ const JobSchema = new Schema(
     { timestamps: true }
 )
 
+/////// Adding Case Insensitive Query Options For Searching  ////////
+
+JobSchema.query.byLocation = function(location) {
+    return this.find({ location: new RegExp(location, 'i')});
+};
+
+JobSchema.query.byCategory = function(category) {
+    return this.find({ category: new RegExp(category, 'i')});
+};
+
+JobSchema.query.byCompany = function(company) {
+    return this.find({ company: new RegExp(company, 'i')});
+};
+
 export default mongoose.model('jobs', JobSchema)
