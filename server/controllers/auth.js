@@ -39,6 +39,7 @@ export const registerUser = async(req,res) => {
 
         //Sign token 
         const token = jwt.sign(payload, process.env.TOKEN_KEY)
+        res.status(201).json({ token });
     } catch (error) {
         console.error(error)
         console.log(error.message);
