@@ -4,6 +4,7 @@ import cors from "cors";
 import logger from "morgan";
 import chalk from "chalk";
 import dotenv from "dotenv";
+import routes from './routes/index.js'
 
 dotenv.config();
 
@@ -14,7 +15,7 @@ app.use(express.json());
 app.use(cors());
 app.use(logger("dev"));
 
-// app.use("/", routes)
+app.use("/", routes)
 
 db.on("connected", () => {
     console.clear();
