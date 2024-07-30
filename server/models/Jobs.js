@@ -34,4 +34,8 @@ JobSchema.query.byCompany = function(company) {
     return this.find({ company: new RegExp(company, 'i')});
 };
 
-export default mongoose.model('jobs', JobSchema)
+JobSchema.query.byName = function(title) {
+    return this.find({ title: new RegExp(title, 'i')})
+}
+
+export default mongoose.model('jobs', JobSchema);
