@@ -25,7 +25,7 @@ function Login({ setUser }) {
             const user = await login(formData);
             // console.log(user);
             setUser(user)
-            navigate('/');
+            navigate('/listing');
         } catch (error) {
             console.error("Error trying to login", error.message);
             setFormData((prevForm) => ({

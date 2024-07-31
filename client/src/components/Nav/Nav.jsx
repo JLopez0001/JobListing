@@ -11,7 +11,7 @@ function NavBar({ user, setUser }) {
         try {
             await logout()
             setUser(null)
-            navigate('/login')
+            navigate('/')
         } catch (error) {
             console.error("Logout error:", error);
         }

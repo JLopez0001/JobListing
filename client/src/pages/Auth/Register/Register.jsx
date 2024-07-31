@@ -36,7 +36,7 @@ function Register({ setUser }) {
             setUser(user);
 
             alert(`${user.username}! Registered Completed!`);
-            navigate('/');
+            navigate('/listing');
         } catch (error) {
             console.error("Error trying to Register", error.message);
             setFormData((prevForm) => ({

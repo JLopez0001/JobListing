@@ -26,9 +26,9 @@ function App() {
     <>
       <NavBar user={user} setUser={setUser}/>
       <Routes> 
-        <Route path='/' element={ <Landing />}/>
+        <Route path='/listing' element={ <Landing />}/>
         <Route path='/register' element={ <Register setUser={setUser} /> }/>
-        <Route path='/login' element={ <Login setUser={setUser} /> }/>
+        <Route path='/' element={ <Login setUser={setUser} /> }/>
         <Route path='/jobs-applied' element={ <Applied />} />
         <Route path='/search' element={ <SearchResults />} />
       </Routes> 
