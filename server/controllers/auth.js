@@ -27,7 +27,8 @@ export const registerUser = async(req,res) => {
             password_digest,
             employed,
             first_name,
-            last_name
+            last_name,
+            employed
         });
         await user.save();
 
@@ -55,6 +56,8 @@ export const loginUser = async (req,res) => {
         const user = await User.findOne({ username }).select(
             "username email password_digest"
         );
+
+        console.log(user)
 
         if(!user){
             return res.status(401).json({ message: "Invalid username or password" });
