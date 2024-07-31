@@ -5,6 +5,8 @@ import NavBar from './components/Nav/Nav.jsx';
 import Landing from './pages/Landing/Landing.jsx';
 import Register from './pages/Auth/Register/Register.jsx';
 import Login from './pages/Auth/Login/Login.jsx';
+import Applied from './pages/JobsApplied/Applied.jsx';
+import SearchResults from './pages/SearchResults/SearchResults.jsx'
 import { verify } from './services/users.js';
 
 function App() {
@@ -27,6 +29,8 @@ function App() {
         <Route path='/' element={ <Landing />}/>
         <Route path='/register' element={ <Register setUser={setUser} /> }/>
         <Route path='/login' element={ <Login setUser={setUser} /> }/>
+        <Route path='/jobs-applied' element={ <Applied />} />
+        <Route path='/search' element={ <SearchResults />} />
       </Routes> 
 
     </>
