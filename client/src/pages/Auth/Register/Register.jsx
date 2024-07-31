@@ -1,9 +1,10 @@
+import PropTypes from 'prop-types';
 import { useState } from "react";
 import { register } from "../../../services/users.js";
 import { useNavigate } from "react-router-dom";
 
 
-function Register() {
+function Register({ setUser }) {
     const navigate = useNavigate();
 
     const [ formData, setFormData ] = useState({
@@ -30,10 +31,12 @@ function Register() {
     const onRegister = async (e) => {
         e.preventDefault();
         try {
-            const response = await register(formData);
-            console.log(response);
-            alert(`${response.username}! Registered Completed!`);
-            navigate('/login');
+            const user = await register(formData);
+            // console.log(user);
+            setUser(user);
+
+            alert(`${user.username}! Registered Completed!`);
+            navigate('/');
         } catch (error) {
             console.error("Error trying to Register", error.message);
             setFormData((prevForm) => ({
@@ -137,5 +140,10 @@ function Register() {
     </div>
   );
 }
+
+// Define PropTypes for the Register page
+Register.propTypes = {
+    setUser: PropTypes.func.isRequired, 
+};
 
 export default Register;

@@ -1,8 +1,9 @@
+import PropTypes from 'prop-types';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../../services/users";
 
-function Login() {
+function Login({ setUser }) {
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
@@ -21,8 +22,9 @@ function Login() {
     const onLogin = async (e) => {
         e.preventDefault();
         try{
-            const response = await login(formData);
-            console.log(response);
+            const user = await login(formData);
+            // console.log(user);
+            setUser(user)
             navigate('/');
         } catch (error) {
             console.error("Error trying to login", error.message);
@@ -72,5 +74,10 @@ function Login() {
     </div>
   );
 }
+
+// Define PropTypes for the Login page
+Login.propTypes = {
+    setUser: PropTypes.func.isRequired, 
+};
 
 export default Login;
