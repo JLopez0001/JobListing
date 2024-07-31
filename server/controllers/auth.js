@@ -1,4 +1,5 @@
 import User from '../models/User.js';
+import Jobs from '../models/Jobs.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
@@ -98,4 +99,67 @@ export const verifyUser = async (req, res) => {
         console.log(error.message);
         res.status(401).send("Not Authorized");
     };
+};
+
+// Function to add a job into the User jobs applied seciont
+export const applyForJob = async (req, res) => {
+    try {
+        // Extract user._id from token 
+        const token = req.headers.authorization.split(' ')[1];
+        const payload = jwt.verify(token, process.env.TOKEN_KEY);
+        const userId = payload.id;
+
+        console.log("this is userID", userId)
+
+        // Find user and job
+        const { jobId } = req.params;
+
+        console.log('this is jobID', jobId)
+
+        const user = await User.findById(userId);
+        const job =  await Jobs.findById(jobId);
+
+        console.log('This is user', user)
+        console.log('This is job', job)
+
+        if (!user || !job) {
+            return res.status(404).json({ status: 'fail', message: 'User or Job not found' });
+        }
+
+        // Check if the user has already applied
+        if (user.jobsApplied.includes(jobId)) {
+            return res.status(400).json({ status: 'fail', message: 'You have already applied for this job' });
+        }
+
+        // Add job to applied list in User model
+        user.jobsApplied.push(jobId);
+        await user.save();
+
+        res.status(200).json({ status: 'success', message:'Applied to job successfull and saved', data: user });
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({ status: 'error', message: 'An error occurred while applying for this job. Please make sure you are logged in and try again.' });
+    }
+};
+
+// Get jobs user applied too
+export const getAppliedJobs = async (req, res) => {
+    try {
+        // Extract user._id from token 
+        const token = req.headers.authorization.split(' ')[1];
+        const payload = jwt.verify(token, process.env.TOKEN_KEY);
+        const userId = payload.id;
+
+        // Find user and populate the field
+        const user = await User.findById(userId).populate('jobsApplied');
+
+        if (!user) {
+            return res.status(404).json({ status: 'fail', message: 'User not found' });
+        }
+
+        res.status(200).json({ status: 'success', data: user.jobsApplied });
+    } catch (error) {
+        console.error("Error fetching applied jobs:", error);
+        res.status(500).json({ status: 'error', message: 'An error occurred while fetching applied jobs. Please try again later.' });
+    }    
 };
