@@ -85,3 +85,52 @@ export const verify = async () => {
     return res.data;
     }
 };
+
+export const applyForJob = async (jobId) => {
+    try {
+        const response = await api.post(`auth/apply/${jobId}`);
+        console.log('this is response', response)
+        return response.data;
+    } catch (error) {
+        console.error("Error applying for job:", error);
+
+        // // Handle different types of errors
+        if (error.response) {
+            // The request was made and the server responded with a status code that falls out of the range of 2xx
+            alert(error.response.data.message || "An error occurred while applying for the job.");
+
+            console.error("Response data:", error.response.data);
+            console.error("Response status:", error.response.status);
+            console.error("Response headers:", error.response.headers);
+        } else if (error.request) {
+            // The request was made but no response was received
+            console.error("Request data:", error.request);
+        } else {
+            // Something happened in setting up the request that triggered an Error
+            console.error("Error message:", error.message);
+        }
+    }
+};
+
+export const getAppliedJobs = async () => {
+    try {
+        const response = await api.get('auth/jobsApplied');
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching applied jobs:", error);
+        // Handle different types of errors
+        if (error.response) {
+            // The request was made and the server responded with a status code that falls out of the range of 2xx
+            console.error("Response data:", error.response.data);
+            console.error("Response status:", error.response.status);
+            console.error("Response headers:", error.response.headers);
+        } else if (error.request) {
+            // The request was made but no response was received
+            console.error("Request data:", error.request);
+        } else {
+            // Something happened in setting up the request that triggered an Error
+            console.error("Error message:", error.message);
+        }
+        throw error; // Re-throw the error after logging it
+    }
+}
