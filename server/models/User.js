@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import Jobs from './Jobs.js';
 import { Schema } from 'mongoose';
 
 const UserSchema = new Schema(
@@ -8,7 +9,8 @@ const UserSchema = new Schema(
         last_name: {type: String, required:true},
         email: {type: String, required: true},
         password_digest: {type: String, required: true, select: false},
-        employed: Boolean
+        employed: Boolean,
+        jobsApplied: [{ type: mongoose.Schema.Types.ObjectId, ref: 'jobs' }]
     },
     { timestamps: true }
 );
