@@ -1,0 +1,21 @@
+.navbarContainer {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+.navLinks {
+    display: flex; 
+    gap: 20px;
+    align-items: center; 
+}
+
+.navLink {
+    text-decoration: none;
+    color: inherit; 
+    font-size: 24px;
+}
+
+.navUsername {
+    font-size: 24px;
+}

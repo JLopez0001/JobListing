@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { NavLink, useNavigate } from 'react-router-dom'
 import { logout } from '../../services/users'
+import './Nav.css'
 
 function NavBar({ user, setUser }) {
     const navigate = useNavigate();
@@ -19,24 +20,29 @@ function NavBar({ user, setUser }) {
     // Navigation options for nav bar if user is loged in
     const authenticatedOptions = (
         <>
-            <NavLink to="/jobs-applied" >Jobs Applied</NavLink>
-            <NavLink onClick={onSignOut} >Sign Out</NavLink>
+            <NavLink className='navLink' to="/">Home</NavLink>
+            <NavLink className='navLink' to="/jobs-applied" >Jobs Applied</NavLink>
+            <NavLink className='navLink' to="/search" >Search</NavLink>
+            <NavLink className='navLink' onClick={onSignOut} >Sign Out</NavLink>
         </>
     );
 
     // Navigation options for nav bar if user is not loged in
     const unauthenticatedOptions = (
         <>
-            <NavLink to='/login'>Login</NavLink>
-            <NavLink to='/register'>Register</NavLink>
+            <NavLink className='navLink' to='/login'>Login</NavLink>
+            <NavLink className='navLink' to='/register'>Register</NavLink>
         </>
     );
 
     return (
-        <nav>
-            {user && <h4>{`Welcome ${user.username}`}</h4> }
-            <NavLink to="/">Home</NavLink>
-            {user ? authenticatedOptions : unauthenticatedOptions}
+        <nav className='navbarContainer'>
+            <div className='navUsername'>
+                {user && <h4>{`Welcome ${user.username}`}</h4> }
+            </div>
+            <div className='navLinks'>
+                {user ? authenticatedOptions : unauthenticatedOptions}
+            </div>
         </nav>
     )
 }
