@@ -16,26 +16,19 @@ To get started with this project, you'll need to clone the repository to your lo
 
 To clone the repository, use the following command in your terminal:
 
- ```bash
-    git clone git@github.com:JLopez0001/JobListing.git 
-```
-```
-cd JobListing / server
-```
+```bash
+git clone git@github.com:JLopez0001/JobListing.git 
 
-1. **Install Node.js dependencies:**
-
-    ```bash
-    npm install
-    ```
+cd JobListing
+```
 
 ## Setup
 
 ### Environment Variables
 
-The server requires environment variables for proper operation. Create a `.env` file in the `server` directory with the following content:
+The server requires environment variables for proper operation. Create a `.env` file in the server directory with the following content:
 
-```
+```bash
 PORT="3000"
 DB_URL="your-mongodb-connection-string"
 SALT_ROUNDS="11"
@@ -46,22 +39,30 @@ TOKEN_KEY="your-secret-token-key"
 - **`DB_URL`**: Replace `"your-mongodb-connection-string"` with your own MongoDB connection string. You can obtain this from your MongoDB database provider.
 - **`TOKEN_KEY`**: Replace `"your-secret-token-key"` with a secret key of your choice for token generation and validation.
 
-## Running the Application
+### Running the Application
 
-### Server
+#### Server
+
+Navigate to the server directory and install the dependencies:
+
+```bash
+cd server
+npm install
+```
 
 To start the server, run:
 
-```
+```bash
 npm run db:seed
 npm run dev
 ```
 
 ### Client
 
-To start the client, navigate to the client directory and run:
+Navigate to the client directory in another terminal tab, install the dependencies, and start the client:
 
-```
+```bash
+cd ../client
 npm install
 npm run dev
 ```
