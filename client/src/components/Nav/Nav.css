@@ -19,3 +19,7 @@
 .navUsername {
     font-size: 24px;
 }
+
+a.active {
+    color: aqua;
+}
