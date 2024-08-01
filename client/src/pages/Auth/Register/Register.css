@@ -1,0 +1,9 @@
+.registerFormFields{
+    margin: 10px 0;
+}
+
+.registerFieldset {
+    display: flex;
+    gap: 10px; 
+    justify-content: center;
+}

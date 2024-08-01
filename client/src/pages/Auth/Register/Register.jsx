@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useState } from "react";
 import { register } from "../../../services/users.js";
 import { useNavigate } from "react-router-dom";
-
+import './Register.css'
 
 function Register({ setUser }) {
     const navigate = useNavigate();
@@ -73,85 +73,97 @@ function Register({ setUser }) {
   return (
     <div>
         <main>
-            <form onSubmit={onRegister} id="register-form">
+            <form onSubmit={onRegister} id="registerForm">
                 <header>
                     <h1>Register</h1>
                     <p>Please fill in this form to create an account.</p>
                 </header>
 
                 <section>
-                    <label htmlFor="username">Username: </label>
-                    <input 
-                        type="text" 
-                        name="username" 
-                        id="username" 
-                        onChange={handleChange}
-                        value={formData.username}
-                        required
-                    />
-                    <br/>
-                    <label htmlFor="email" >Email: </label>
-                    <input 
-                        type="email" 
-                        name="email" 
-                        id="email" 
-                        onChange={handleChange}
-                        value={formData.email}
-                        required
-                    />
-                    <br/>
-                    <label htmlFor="password">Password: </label>
-                    <input 
-                        type="password" 
-                        name="password" 
-                        id="password"
-                        onChange={handleChange}
-                        value={formData.password}
-                        required
-                    />
-                    <br/>
-                    <label htmlFor="first_name">First Name: </label>
-                    <input 
-                        type="text" 
-                        name="first_name" 
-                        id="fname" 
-                        onChange={handleChange}
-                        value={formData.first_name}
-                        required
-                    />
-                    <br />
-                    <label htmlFor="last_name">Last Name: </label>
-                    <input 
-                        type="text"
-                        name="last_name" 
-                        id="lname" 
-                        onChange={handleChange}
-                        value={formData.last_name}
-                        required
-                    />
-                    <br />
+                    <div className='registerFormFields'>
+                        <label htmlFor="username">Username: </label>
+                        <input 
+                            type="text" 
+                            name="username" 
+                            id="username" 
+                            onChange={handleChange}
+                            value={formData.username}
+                            required
+                        />
+                    </div>
+
+                    <div className='registerFormFields'>
+                        <label htmlFor="email" >Email: </label>
+                        <input 
+                            type="email" 
+                            name="email" 
+                            id="email" 
+                            onChange={handleChange}
+                            value={formData.email}
+                            required
+                        />
+                    </div>
+
+                    <div className='registerFormFields'>
+                        <label htmlFor="password">Password: </label>
+                        <input 
+                            type="password" 
+                            name="password" 
+                            id="password"
+                            onChange={handleChange}
+                            value={formData.password}
+                            required
+                        />
+                    </div>
+                    
+                    <div className='registerFormFields'>
+                        <label htmlFor="first_name">First Name: </label>
+                        <input 
+                            type="text" 
+                            name="first_name" 
+                            id="fname" 
+                            onChange={handleChange}
+                            value={formData.first_name}
+                            required
+                        />
+                    </div>
+
+                    <div className='registerFormFields'>
+                        <label htmlFor="last_name">Last Name: </label>
+                        <input 
+                            type="text"
+                            name="last_name" 
+                            id="lname" 
+                            onChange={handleChange}
+                            value={formData.last_name}
+                            required
+                        />
+                    </div>
                 </section>
 
                 <fieldset>
                     <legend>Employment Status</legend>
                     <p>Are You Employed?</p>
-                    <label htmlFor="employed">Yes</label>
-                    <input 
-                        type="radio" 
-                        name="employed" 
-                        id="employed" 
-                        onChange={handleChange}
-                        value= "true" 
-                        required
-                    />
-                    <label htmlFor="unemployed">No</label>
-                    <input 
-                        type="radio" 
-                        name="employed" 
-                        onChange={handleChange}
-                        id="unemployed"
-                        value="false" 
-                    />
+
+                    <section className='registerFieldset'>
+                        <label htmlFor="employed">Yes</label>
+                        <input 
+                            type="radio" 
+                            name="employed" 
+                            id="employed" 
+                            onChange={handleChange}
+                            value= "true" 
+                            required
+                        />
+                        <label htmlFor="unemployed">No</label>
+                        <input 
+                            type="radio" 
+                            name="employed" 
+                            onChange={handleChange}
+                            id="unemployed"
+                            value="false" 
+                        />
+                    </section>
                 </fieldset>
 
                 {renderError()}
