@@ -20,7 +20,7 @@ function NavBar({ user, setUser }) {
     // Navigation options for nav bar if user is loged in
     const authenticatedOptions = (
         <>
-            <NavLink className='navLink' to="/">Home</NavLink>
+            <NavLink className='navLink' to="/listing">Home</NavLink>
             <NavLink className='navLink' to="/jobs-applied" >Jobs Applied</NavLink>
             <NavLink className='navLink' to="/search" >Search</NavLink>
             <NavLink className='navLink' onClick={onSignOut} >Sign Out</NavLink>
@@ -30,7 +30,7 @@ function NavBar({ user, setUser }) {
     // Navigation options for nav bar if user is not loged in
     const unauthenticatedOptions = (
         <>
-            <NavLink className='navLink' to='/login'>Login</NavLink>
+            <NavLink className='navLink' to='/'>Login</NavLink>
             <NavLink className='navLink' to='/register'>Register</NavLink>
         </>
     );
