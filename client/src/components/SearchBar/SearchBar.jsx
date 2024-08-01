@@ -1,5 +1,6 @@
 import { useState } from "react";
 import PropTypes from 'prop-types';
+import './SearchBar.css'
 
 function SearchBar({ onSearch }) {
 
@@ -28,59 +29,67 @@ function SearchBar({ onSearch }) {
     
 
     return (
-        <div>
-            <form onSubmit={onSubmit} id="job-search-form" >
+        <main>
+            <form onSubmit={onSubmit} id="jobSearchForm" >
                 <header>
                     <h1>Search Your Next Job</h1>
                 </header>
 
-                <section className="form-group">
-                    <label htmlFor="title">Job Title:</label>
-                    <input
-                        type="text"
-                        id="title"
-                        name="title"
-                        value={formData.title}
-                        onChange={handleChange}
-                        placeholder="UX Designer"
-                    />
+                <section className="searchGroup">
+                    <div>
+                        <label htmlFor="title">Job Title: </label>
+                        <input
+                            type="text"
+                            id="title"
+                            name="title"
+                            value={formData.title}
+                            onChange={handleChange}
+                            placeholder="UX Designer"
+                        />
+                    </div>
 
-                    <label htmlFor="location">Location:</label>
-                    <input
-                        type="text"
-                        id="location"
-                        name="location"
-                        value={formData.location}
-                        onChange={handleChange}
-                        placeholder="New York"
-                    />
+                    <div>
+                        <label htmlFor="location">Location: </label>
+                        <input
+                            type="text"
+                            id="location"
+                            name="location"
+                            value={formData.location}
+                            onChange={handleChange}
+                            placeholder="New York"
+                        />
+                    </div>
 
-                    <label htmlFor="category">Category:</label>
-                    <input
-                        type="text"
-                        id="category"
-                        name="category"
-                        value={formData.category}
-                        onChange={handleChange}
-                        placeholder="IT"
-                    />
+                    <div>
+                        <label htmlFor="category">Category: </label>
+                        <input
+                            type="text"
+                            id="category"
+                            name="category"
+                            value={formData.category}
+                            onChange={handleChange}
+                            placeholder="IT"
+                        />
+                    </div>
 
-                    <label htmlFor="company">Company:</label>
-                    <input
-                        type="text"
-                        id="company"
-                        name="company"
-                        value={formData.company}
-                        onChange={handleChange}
-                        placeholder="Google"
-                    />   
+                    <div>
+                        <label htmlFor="company">Company: </label>
+                        <input
+                            type="text"
+                            id="company"
+                            name="company"
+                            value={formData.company}
+                            onChange={handleChange}
+                            placeholder="Google"
+                        />   
+                    </div>
                 </section>
 
                 <fieldset>
                     <legend>Job Details</legend>
 
-                    <section>
-                        <label htmlFor="employmentType">Employment Type:</label>
+                    <section className="searchFieldSet">
+                        <label htmlFor="employmentType">Employment Type: </label>
                         <select
                             id="employmentType"
                             name="employmentType"
@@ -95,8 +104,8 @@ function SearchBar({ onSearch }) {
                         </select>
                     </section>
 
-                    <section>
-                        <label htmlFor="experienceLevel">Experience Level:</label>
+                    <section className="searchFieldSet">
+                        <label htmlFor="experienceLevel">Experience Level: </label>
                         <select
                             id="experienceLevel"
                             name="experienceLevel"
@@ -111,8 +120,8 @@ function SearchBar({ onSearch }) {
                         </select>
                     </section>
 
-                    <section>
-                        <label htmlFor="remote">Remote Status:</label>
+                    <section className="searchFieldSet">
+                        <label htmlFor="remote">Remote Status: </label>
                         <select
                             id="remote"
                             name="remote"
@@ -129,7 +138,7 @@ function SearchBar({ onSearch }) {
                 </fieldset>
                 <button type="submit">Search</button>
             </form>
-        </div>
+        </main>
     );
 }
 
