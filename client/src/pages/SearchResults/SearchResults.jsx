@@ -1,7 +1,7 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import SearchBar from '../../components/SearchBar/SearchBar.jsx'
 import { searchJobs, getJob } from '../../services/jobs.js'
-import { applyForJob } from '../../services/users.js'
+import { applyForJob, getAppliedJobs } from '../../services/users.js'
 import Job from '../../components/Job/Job.jsx'
 import JobDetail from '../../components/Job/JobDetail.jsx'
 
@@ -11,6 +11,19 @@ function SearchResults() {
     const [appliedJobs, setAppliedJobs] = useState(new Set());
     const [searchPerformed, setSearchPerformed] = useState(false); 
 
+    useEffect(() => {
+        const fetchAppliedJobs = async () => {
+            try {
+                const response = await getAppliedJobs(); // API call to fetch applied jobs
+                const appliedJobIds = response.data.map(job => job._id);
+                setAppliedJobs(new Set(appliedJobIds));
+            } catch (error) {
+                console.error("Error fetching applied jobs:", error);
+            }
+        };
+
+        fetchAppliedJobs();
+    }, []);
 
     const handleSearch = async (searchParams) => {
         try {
