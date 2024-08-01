@@ -31,12 +31,32 @@ function Login({ setUser }) {
             setFormData((prevForm) => ({
                 ...prevForm,
                 isError: true,
-                errorMsg: "Invalid Credentials",
+                errorMsg: error.message,
                 username: prevForm.username,
                 password: "",
               }));
         }
     };
+
+
+    // Renders error button if register was not successful
+    const renderError = () => {
+        const toggleForm = formData.isError ? "danger" : "";
+        if (formData.isError) {
+          return (
+            <button type="submit" className={toggleForm}>
+              {formData.errorMsg}
+            </button>
+          );
+        } else {
+          return (
+            <button className="submitButton" type="submit">
+              Submit
+            </button>
+          );
+        }
+    };
+
 
   return (
     <div>
@@ -68,7 +88,7 @@ function Login({ setUser }) {
                         required
                     />
                 </section>
-                <button type="submit">Login</button>
+                {renderError()}
             </form>
         </main>
     </div>

@@ -41,11 +41,32 @@ function Register({ setUser }) {
             console.error("Error trying to Register", error.message);
             setFormData((prevForm) => ({
                 isError: true,
-                errorMsg: "Invalid Credentials",
+                errorMsg: error.message,
                 username: prevForm.username,
-                email: "",
+                email: prevForm.email,
                 password: "",
+                first_name:'',
+                last_name:'',
               }));
+        }
+    };
+
+
+    // Renders error button if register was not successful
+    const renderError = () => {
+        const toggleForm = formData.isError ? "danger" : "";
+        if (formData.isError) {
+          return (
+            <button type="submit" className={toggleForm}>
+              {formData.errorMsg}
+            </button>
+          );
+        } else {
+          return (
+            <button className="submitButton" type="submit">
+              Submit
+            </button>
+          );
         }
     };
 
@@ -133,7 +154,7 @@ function Register({ setUser }) {
                     />
                 </fieldset>
 
-                <button type="submit">Register</button>
+                {renderError()}
           
             </form> 
         </main>

@@ -14,12 +14,13 @@ export const register = async (credentials) => {
 
         return user
     } catch (error) {
+        console.log('erro',error)
         // Log the error for debugging purposes
         console.error("Register error:", error);
 
         // Transform the error into a user-friendly message or custom error object
         const errorMessage =
-          error.response?.data?.message || "Registration failed due to an unexpected error.";
+          error.response?.data?.error || "Registration failed due to an unexpected error.";
 
         // Optionally, throw a new error with the transformed message or handle it differently
         throw new Error(errorMessage);
@@ -39,10 +40,10 @@ export const login = async (credentials) => {
     } catch (error) {
         // Log the error for debugging purposes
         console.error("Login error:", error);
-
+        console.log('er', error)
         // Transform the error into a user-friendly message or custom error object
         const errorMessage =
-          error.response?.data?.message || "Login failed due to an unexpected error.";
+          error.response?.data?.error || "Login failed due to an unexpected error.";
 
         // Optionally, throw a new error with the transformed message or handle it differently
         throw new Error(errorMessage);

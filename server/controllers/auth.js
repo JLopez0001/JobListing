@@ -61,11 +61,12 @@ export const loginUser = async (req,res) => {
         console.log(user)
 
         if(!user){
-            return res.status(401).json({ message: "Invalid username or password" });
+            return res.status(401).json({ error: "Invalid username or password" });
         };
 
-        if(!user || !password){
-            return res.status(400).json({ message : "Please fill out all fields" });
+        //Check to determin if password reaches minimal length requirments
+        if(password.length < 6){
+            return res.status(400).json({ error: "Password must be at least 6 characters long" });
         };
 
         //Compare passwords and send token through payload if match
@@ -79,7 +80,7 @@ export const loginUser = async (req,res) => {
             const token = jwt.sign(payload, process.env.TOKEN_KEY);
             res.status(201).json({ token });
         } else {
-            res.status(401).send("Invalid Credentials");
+            res.status(401).json({ error: "Invalid Credentials" });
         };
     } catch (error) {
         console.log(error.message);
